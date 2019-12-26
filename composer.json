@@ -1,0 +1,22 @@
+{
+  "name": "extsalt/otp",
+  "description": "A package allows to use multiple vendor for sending otp and also allowing you to switch on run time.",
+  "type": "dev",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "extsalt",
+      "email": "extsalt@gmail.com"
+    }
+  ],
+  "require": {},
+  "extra": {
+    "laravel": {
+    }
+  },
+  "autoload": {
+    "psr-0": {
+      "Extsalt\\Otp": "src/"
+    }
+  }
+}
