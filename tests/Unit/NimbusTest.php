@@ -2,7 +2,8 @@
 
 namespace Extsalt\Otp\Test\Unit;
 
-use Extsalt\Otp\Nimbus;
+
+use Extsalt\Otp\Vendors\Nimbus;
 
 class NimbusTest extends \Extsalt\Otp\Test\Unit\TestCase
 {
@@ -19,7 +20,7 @@ class NimbusTest extends \Extsalt\Otp\Test\Unit\TestCase
      */
     public function send_msg_test()
     {
-        $response = Nimbus::send(7683096600, "hello world hello there");
+        $response = Nimbus::send(9999999999, "hello world hello there");
 
         $status = $response->getStatusCode() === 200;
 

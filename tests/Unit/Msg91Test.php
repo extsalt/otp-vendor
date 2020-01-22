@@ -3,7 +3,7 @@
 namespace Extsalt\Otp\Test\Unit;
 
 use Extsalt\Otp\Facades\SMS;
-use Extsalt\Otp\Msg91;
+use Extsalt\Otp\Vendors\Msg91;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 
@@ -25,7 +25,7 @@ class Msg91Test extends \Extsalt\Otp\Test\Unit\TestCase
      */
     public function send_msg_test()
     {
-        $response = Msg91::send('7683096600', 'hello world');
+        $response = Msg91::send('xxxxxxxxxx', 'hello world');
 
         $status = $response->getStatusCode() === 200;
 
@@ -39,12 +39,10 @@ class Msg91Test extends \Extsalt\Otp\Test\Unit\TestCase
     {
         DB::table('settings')->insert([
             'key' => 'sms_vendor',
-//            'value' => 'msg91'
-            'value' => 'nimbus'
+            'value' => 'msg91'
         ]);
 
-        $response = SMS::message("768309600", 'hello world');
-        dd($response);
+        $response = SMS::message("xxxxxxxxx", 'hello world');
 
         $status = $response->getStatusCode() === 200;
 
