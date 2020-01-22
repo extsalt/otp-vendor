@@ -1,7 +1,7 @@
 ## Multiple SMS/OTP Vendor
 
 ## In settings table
-  In setting table add `msg91` or `nimbus`. This package currently support those.~
+  In setting table add `msg91` or `nimbus`. This package currently support those.
 
 ## Sending messages
     SMS::message('XXXXXXXXX', 'hello world');
