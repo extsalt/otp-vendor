@@ -1,3 +1,2 @@
-# otp-vendor
+# Multiple SMS/OTP Vendor
 
-Use this https://coderstape.com/series/1-laravel-package-development
