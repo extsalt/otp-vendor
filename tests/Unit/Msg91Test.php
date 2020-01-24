@@ -19,13 +19,6 @@ class Msg91Test extends \Extsalt\Otp\Test\Unit\TestCase
         $this->assertInstanceOf(Msg91::class, $msg);
     }
 
-
-    /**  @test */
-    public function msg91_credential_test()
-    {
-//        dd((new Msg91())->prepareBasePayload());
-    }
-
     /** @test
      * @throws \Exception
      */
@@ -33,6 +26,8 @@ class Msg91Test extends \Extsalt\Otp\Test\Unit\TestCase
     {
         $response = Msg91::send(768309600, 'hello world');
 
-//        dd($response->getBody()->getContents());
+        $status = $response->getStatusCode() === 200;
+
+        $this->assertTrue($status);
     }
 }

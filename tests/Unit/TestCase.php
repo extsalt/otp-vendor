@@ -37,11 +37,5 @@ class TestCase extends \Orchestra\Testbench\TestCase
             'database' => ':memory:'
         ]);
 
-        $app['config']->set('sms.NIMBUS_USER_ID', '100285');
-        $app['config']->set('sms.NIMBUS_AUTH_KEY', '010hQEHTtR009I2ZpZVT');
-        $app['config']->set('sms.NIMBUS_SENDER_ID', 'DIGISM');
-
-        $app['config']->set('sms.MSG91_AUTH_KEY', '010hQEHTtR009I2ZpZVT');
-        $app['config']->set('sms.MSG91_SENDER_ID', 'OTPOTP');
     }
 }
