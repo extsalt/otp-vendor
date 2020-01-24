@@ -1,10 +1,10 @@
 <?php
 
 return [
-    'MSG91_AUTH_KEY' => '154712AvwbLU758TdF59314929',
-    'MSG91_SENDER_ID' => 'OTPOTP',
+    'MSG91_AUTH_KEY' => 'xxxxxxxxxxxxxxxxxxxx',
+    'MSG91_SENDER_ID' => 'xxxxxx',
 
-    'NIMBUS_AUTH_KEY' => '2341234123412341234',
-    'NIMBUS_USER_ID' => '4234534t',
-    'NIMBUS_SENDER_ID' => '4234534t'
+    'NIMBUS_AUTH_KEY' => 'xxxxxxxxxxxxxxxxxxxx',
+    'NIMBUS_USER_ID' => 'xxxxxx',
+    'NIMBUS_SENDER_ID' => 'xxxxxx'
 ];

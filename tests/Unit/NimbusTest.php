@@ -4,26 +4,33 @@ namespace Extsalt\Otp\Test\Unit;
 
 
 use Extsalt\Otp\Vendors\Nimbus;
+use Illuminate\Support\Facades\Config;
 
 class NimbusTest extends \Extsalt\Otp\Test\Unit\TestCase
 {
     /** @test */
-    public function instance_test()
+    public function nimbus_instance_test()
     {
         $msg = new Nimbus();
 
         $this->assertInstanceOf(Nimbus::class, $msg);
     }
 
+    /** @test */
+    public function nimbus_credentials_test()
+    {
+        $msg = new Nimbus();
+
+        $this->assertIsArray($msg->prepareBasePayload());
+    }
+
     /** @test
      * @throws \Exception
      */
-    public function send_msg_test()
+    public function nimbus_msg_test()
     {
-        $response = Nimbus::send(9999999999, "hello world hello there");
+        $response = Nimbus::send('xxxxxxxxxx', "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 
-        $status = $response->getStatusCode() === 200;
-
-        $this->assertEquals($status, 200);
+        $this->assertTrue($response);
     }
 }

@@ -12,7 +12,7 @@ class Msg91Test extends \Extsalt\Otp\Test\Unit\TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function instance_test()
+    public function msg91_instance_test()
     {
         $msg = new Msg91();
 
@@ -20,33 +20,19 @@ class Msg91Test extends \Extsalt\Otp\Test\Unit\TestCase
     }
 
 
-    /** @test
-     * @throws \Exception
-     */
-    public function send_msg_test()
+    /**  @test */
+    public function msg91_credential_test()
     {
-        $response = Msg91::send('xxxxxxxxxx', 'hello world');
-
-        $status = $response->getStatusCode() === 200;
-
-        $this->assertEquals($status, 200);
+//        dd((new Msg91())->prepareBasePayload());
     }
 
     /** @test
      * @throws \Exception
      */
-    public function send_msg_via_facades_test()
+    public function msg91_send_msg_test()
     {
-        DB::table('settings')->insert([
-            'key' => 'sms_vendor',
-            'value' => 'msg91'
-        ]);
+        $response = Msg91::send(768309600, 'hello world');
 
-        $response = SMS::message("xxxxxxxxx", 'hello world');
-
-        $status = $response->getStatusCode() === 200;
-
-        $this->assertEquals(200, $status);
+//        dd($response->getBody()->getContents());
     }
-
 }

@@ -91,4 +91,14 @@ abstract class MessageVendor
     {
         return (new static())->message($arguments[0], $arguments[1]);
     }
+
+    /**
+     * Parse response
+     *
+     * @param $response
+     */
+    public function parseResponse($response)
+    {
+
+    }
 }

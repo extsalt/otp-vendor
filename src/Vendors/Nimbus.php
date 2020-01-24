@@ -11,7 +11,6 @@ class Nimbus extends MessageVendor
      * Constructor
      *
      * @return void
-     *
      */
     public function __construct()
     {
@@ -19,9 +18,6 @@ class Nimbus extends MessageVendor
         $this->senderId = config('sms.NIMBUS_SENDER_ID');
         $this->userId = config('sms.NIMBUS_USER_ID');
         $this->guzzle = new GuzzleClient(["base_uri" => "http://nimbusit.info/api/"]);
-        $this->route = '4';
-        $this->country = '91';
-        $this->unicode = 1;
     }
 
     /**
@@ -37,7 +33,9 @@ class Nimbus extends MessageVendor
     {
         $data = $this->mergeBasePayload($recipients, $message);
 
-        return $this->guzzle->request('GET', 'pushsms.php', ['query' => $data]);
+        $response = $this->guzzle->request('GET', 'pushsms.php', ['query' => $data]);
+
+        return $this->parseResponse($response->getBody()->getContents());
     }
 
     /**
@@ -47,12 +45,9 @@ class Nimbus extends MessageVendor
      */
     public function prepareBasePayload()
     {
-        return ['sender' => urldecode($this->senderId),
-            'route' => $this->route,
+        return ['sender' => $this->senderId,
             'key' => $this->authKey,
-            'unicode' => $this->unicode,
             'user' => $this->userId,
-            'country' => $this->country
         ];
     }
 
@@ -64,15 +59,28 @@ class Nimbus extends MessageVendor
      * @return array|void
      * @throws \Exception
      */
-    public function mergeBasePayload($message, $recipients)
+    public function mergeBasePayload($recipients, $message)
     {
         if ((strlen($message) > 160))
             throw new \Exception('Message should not exceed 160 characters in length');
 
         $payload = $this->prepareBasePayload();
-        $payload['text'] = urlencode($message);
+        $payload['text'] = $message;
         $payload['mobile'] = is_array($recipients) ? implode(',', $recipients) : $recipients;
 
         return $payload;
+    }
+
+    /**
+     * Parse response
+     *
+     * @param $response
+     * @return bool|void
+     */
+    public function parseResponse($response)
+    {
+        $splinters = explode(',', $response);
+
+        return abs($splinters[0]) === 100;
     }
 }
